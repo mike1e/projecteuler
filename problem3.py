@@ -1,25 +1,19 @@
 #!/usr/bin/python
 # Project Euler #3 : Largest Prime Factor
 
-import math
+import time
 
 
-def prime_number(num):
-    if num == 2:
-        return True
-    for x in xrange(2, int(math.sqrt(num+1))):
-        if num % x == 0:
-            return False
-    return True
-
-
-def factor(num):
-    factors = []
+def find_largest_prime(num):
     x = 2
-    while x < math.sqrt(num):
-        if num % x == 0 and prime_number(x):
-            factors.append(x)
+    if num == 2:
+        return num
+    while x < num:
+        if num % x == 0:
+            num = num / x
         x += 1
-    print factors.pop()
+    return x
 
-factor(600851475143)
+start = time.time()
+print find_largest_prime(600851475143)
+print time.time() - start, "seconds"
